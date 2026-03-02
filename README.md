@@ -14,7 +14,7 @@ A imagem e o texto são enviados entre páginas via **localStorage**, e cada mod
 
 ## 📁 Estrutura do projeto
 
-
+<pre>
 FORMATO_DE_IMPRESSAO/
 ├─ index.html
 ├─ img/
@@ -31,7 +31,7 @@ FORMATO_DE_IMPRESSAO/
 └─ style/
 ├─ index.css
 └─ pages/
-
+</pre>
 
 ---
 
