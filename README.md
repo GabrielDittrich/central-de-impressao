@@ -19,7 +19,7 @@ https://gabrieldittrich.github.io/central-de-impressao/
 <pre>
 FORMATO_DE_IMPRESSAO/
 ├─ index.html
-├─ img/
+├─ assets/
 ├─ js/
 │ ├─ index.js
 │ └─ pages/
