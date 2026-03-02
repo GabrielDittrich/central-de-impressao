@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/printer-door-open.png">
+    <script src="js/index.js" defer></script>
+    <link rel="stylesheet" href="style/index.css">
+    <title>Central de Impressão</title>
+
+</head>
+
+<body>
+
+    <div class="menu">
+        <h2>Central de Impressão</h2>
+
+        <label>Escolha o modelo:</label>
+        <select id="modelo">
+            <option value="6x">Imprimir 6 imagens na A4</option>
+            <option value="4x">Imprimir 4 imagens na A4</option>
+            <option value="a4">Imagem única A4</option>
+            <option value="a3">Imagem única A3</option>
+            <option value="avisoA4">Aviso A4 (Texto)</option>
+            <option value="avisoA3">Aviso A3 (Texto)</option>
+        </select>
+
+        <br><br>
+
+        <input type="file" id="imagemInput" accept="image/*">
+
+        <div id="previewContainer" style="display:none; margin-top:15px;">
+            <img id="previewImagem" style="width:100%; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.15);">
+        </div>
+
+        <textarea id="textoInput" placeholder="Digite o texto do aviso aqui..."
+            style="width:100%; height:100px; margin-top:10px; display:none;"></textarea>
+
+        <br><br>
+
+        <button onclick="imprimir()">Imprimir</button>
+    </div>
+
+    <div id="areaImpressao" class="preview"></div>
+
+</body>
+
+</html>

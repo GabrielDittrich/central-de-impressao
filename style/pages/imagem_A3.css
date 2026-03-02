@@ -1,0 +1,19 @@
+@page {
+    size: A3 landscape;
+    margin: 0;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 420mm;
+    height: 297mm;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}

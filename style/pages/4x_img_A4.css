@@ -1,0 +1,31 @@
+@page {
+    size: A4 landscape;
+    margin: 0;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 297mm;
+    height: 210mm;
+    overflow: hidden;
+}
+
+.grid4 {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(2, 50%);
+}
+
+.grid4 img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* margem fina entre elas */
+    padding: 2mm;
+    /* mantém dentro do grid */
+    box-sizing: border-box;
+}

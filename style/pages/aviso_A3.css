@@ -1,0 +1,32 @@
+@page {
+    size: A3 landscape;
+    margin: 0;
+}
+
+#container {
+    overflow: hidden;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    width: 420mm;
+    height: 297mm;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    margin: 0;
+    text-transform: uppercase;
+    word-break: break-word;
+}
