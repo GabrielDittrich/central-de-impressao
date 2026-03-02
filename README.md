@@ -35,6 +35,19 @@ FORMATO_DE_IMPRESSAO/
 
 ---
 
+## Prints
+
+### Tela inicial
+![Tela inicial](assets/tela-inicial.png)
+
+### Modelo 4x A4
+![Modelo 4x A4](assets/modelo-4x.png)
+
+### Modelo 6x A4
+![Modelo 6x A4](assets/modelo-6x.png)
+
+---
+
 ## ✅ Como rodar
 
 ### Opção 1 (recomendada): Live Server (VS Code)
