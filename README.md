@@ -1,5 +1,3 @@
-Só ajuste o nome do repo e, se quiser, coloque prints depois.
-
 # Central de Impressão
 
 Aplicação web simples (HTML, CSS e JavaScript) para **montar e imprimir**:
@@ -10,6 +8,10 @@ Aplicação web simples (HTML, CSS e JavaScript) para **montar e imprimir**:
 
 A imagem e o texto são enviados entre páginas via **localStorage**, e cada modelo possui seu template em `/pages`.
 
+---
+
+## Página web
+https://gabrieldittrich.github.io/central-de-impressao/
 ---
 
 ## 📁 Estrutura do projeto
@@ -38,13 +40,20 @@ FORMATO_DE_IMPRESSAO/
 ## Prints
 
 ### Tela inicial
-![Tela inicial](assets/tela-inicial.png)
+<p align="center">
+  <img src="assets/tela-inicial.png" alt="Tela inicial" width="700">
+</p>
 
 ### Modelo 4x A4
-![Modelo 4x A4](assets/modelo-4x.png)
+<p align="center">
+  <img src="assets/modelo-4x.png" alt="Modelo 4x A4" width="700">
+</p>
 
 ### Modelo 6x A4
-![Modelo 6x A4](assets/modelo-6x.png)
+<p align="center">
+  <img src="assets/modelo-6x.png" alt="Modelo 6x A4" width="700">
+</p>
+
 
 ---
 
