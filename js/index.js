@@ -54,7 +54,7 @@ function imprimir() {
 
         localStorage.setItem("textoAviso", textoDigitado);
 
-        window.open("pages/aviso_A4.html", "_blank");
+        window.open("./pages/aviso_A4.html", "_blank");
         return;
     }
 
@@ -69,7 +69,7 @@ function imprimir() {
 
         localStorage.setItem("textoAviso", textoDigitado);
 
-        window.open("pages/aviso_A3.html", "_blank");
+        window.open("./pages/aviso_A3.html", "_blank");
         return;
     }
 
@@ -82,19 +82,19 @@ function imprimir() {
     localStorage.setItem("imagemSelecionada", imagemURL);
 
     if (modelo === "4x") {
-        window.open("pages/4x_img_A4.html", "_blank");
+        window.open("./pages/4x_img_A4.html", "_blank");
     }
 
     if (modelo === "6x") {
-        window.open("pages/6x_img_A4.html", "_blank");
+        window.open("./pages/6x_img_A4.html", "_blank");
     }
 
     if (modelo === "a4") {
-        window.open("pages/aviso_A4.html", "_blank");
+        window.open("./pages/imagem_A4.html", "_blank");
     }
 
     if (modelo === "a3") {
-        window.open("pages/imagem_A3.html", "_blank");;
+        window.open("./pages/imagem_A3.html", "_blank");
     }
 
 }
