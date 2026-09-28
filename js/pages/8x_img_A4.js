@@ -1,8 +1,8 @@
 (function () {
     const imagem = localStorage.getItem("imagemSelecionada");
-    const grid = document.getElementById("grid");
+    const grid = document.getElementById("grid8");
     const btnPrint = document.getElementById("btnPrint");
-    const total = 6;
+    const total = 8;
     let carregadas = 0;
     let houveErro = false;
 

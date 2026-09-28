@@ -1,111 +1,87 @@
 # Central de Impressão
 
-Aplicação web simples (HTML, CSS e JavaScript) para **montar e imprimir**:
-- **4 imagens em A4 (paisagem)**
-- **6 imagens em A4 (paisagem)**
-- **Imagem única em A4 / A3**
-- **Avisos em texto (A4 / A3)**
+Aplicação em HTML, CSS e JavaScript para preparar, pré-visualizar, imprimir e exportar modelos de impressão. Funciona no navegador, sem backend.
 
-A imagem e o texto são enviados entre páginas via **localStorage**, e cada modelo possui seu template em `/pages`.
+## Modelos
 
----
+- Uma mesma imagem repetida **4, 6 ou 8 vezes** em A4 paisagem.
+- Imagem única em **A4 ou A3** paisagem.
+- Aviso em texto em **A4 ou A3** paisagem.
+- **QR Code** de um link `http://` ou `https://`.
+- **Código de barras Code 128** para um identificador ou link curto.
 
-## Página web
-https://gabrieldittrich.github.io/central-de-impressao/
----
+[Ver a página publicada](https://gabrieldittrich.github.io/central-de-impressao/)
 
-## 📁 Estrutura do projeto
+## Como usar
 
-<pre>
-FORMATO_DE_IMPRESSAO/
-├─ index.html
-├─ assets/
-├─ js/
-│ ├─ index.js
-│ └─ pages/
-├─ pages/
-│ ├─ 4x_img_A4.html
-│ ├─ 6x_img_A4.html
-│ ├─ imagem_A4.html
-│ ├─ imagem_A3.html
-│ ├─ aviso_A4.html
-│ └─ aviso_A3.html
-└─ style/
-├─ index.css
-└─ pages/
-</pre>
+1. Abra o `index.html` com o Live Server no VS Code.
+2. Escolha um modelo. Selecione uma imagem, digite um aviso ou informe o link/código, conforme o modelo.
+3. Clique em **Pré-visualizar** para abrir a folha sem o diálogo de impressão, ou em **Imprimir** para abrir o Ctrl+P automaticamente após o conteúdo carregar.
+4. Na página da folha, use **Imprimir esta folha** ou **Imprimir novamente**. Nos modelos de QR Code e Code 128, também é possível **Baixar SVG**.
 
----
+O diálogo nativo do Ctrl+P pode bloquear a interação com outras abas. Para preparar vários modelos antes de imprimir, abra cada um e deixe no **Pré-visualizar**.
 
-## Prints
+> Recomenda-se o Live Server porque o comportamento de `localStorage` em páginas abertas diretamente por `file://` varia entre navegadores.
 
-### Tela inicial
-<p align="center">
-  <img src="assets/tela-inicial.png" alt="Tela inicial" width="700">
-</p>
+## Estrutura do projeto
 
-### Modelo 4x A4
-<p align="center">
-  <img src="assets/modelo-4x.png" alt="Modelo 4x A4" width="700">
-</p>
+```text
+central-de-impressao/
+├── index.html
+├── README.md
+├── assets/                 # ícone e capturas de tela
+├── pages/                  # páginas das folhas
+│   ├── 4x_img_A4.html
+│   ├── 6x_img_A4.html
+│   ├── 8x_img_A4.html
+│   ├── imagem_A4.html
+│   ├── imagem_A3.html
+│   ├── aviso_A4.html
+│   ├── aviso_A3.html
+│   ├── codigo_qr.html
+│   └── codigo_barras.html
+├── js/
+│   ├── index.js            # seleção, validação e abertura dos modelos
+│   ├── pages/              # geração do conteúdo e impressão
+│   └── vendor/             # bibliotecas locais de QR e Code 128
+│       ├── qrcode-generator.js
+│       ├── qrcode-utf8.js
+│       └── JsBarcode.all.min.js
+├── style/
+│   ├── index.css
+│   └── pages/              # prévia na tela e regras @media print
+└── licenses/
+    ├── qrcode-generator-MIT.txt
+    ├── JsBarcode-MIT.txt
+    └── THIRD_PARTY.md
+```
 
-### Modelo 6x A4
-<p align="center">
-  <img src="assets/modelo-6x.png" alt="Modelo 6x A4" width="700">
-</p>
+## Como funciona
 
+O `js/index.js` usa `FileReader` para converter a imagem selecionada em uma URL de dados e guarda o conteúdo no `localStorage`:
 
----
+| Chave               | Conteúdo                                         |
+| ------------------- | ------------------------------------------------ |
+| `imagemSelecionada` | Imagem para os modelos 4x, 6x, 8x e imagem única |
+| `textoAviso`        | Texto dos avisos A4/A3                           |
+| `codigoConteudo`    | Link do QR Code ou texto do Code 128             |
 
-## ✅ Como rodar
+Cada página em `pages/` lê a chave correspondente e monta a folha. As regras `@media screen` apresentam a prévia; `@media print` deixa apenas o conteúdo da folha e define o papel com `@page`. Nos modelos com várias imagens, as linhas tracejadas aparecem apenas na tela.
 
-### Opção 1 (recomendada): Live Server (VS Code)
-1. Abra a pasta no VS Code  
-2. Instale a extensão **Live Server**  
-3. Clique com o botão direito no `index.html` → **Open with Live Server**
+O QR Code usa `qrcode-generator` com margem branca de quatro módulos. O código de barras usa `JsBarcode` no formato Code 128. As duas bibliotecas estão em `js/vendor/`, então não há dependência de CDN durante o uso. O botão **Baixar SVG** exporta um desenho vetorial, que não fica pixelado ao ampliar.
 
-> Isso evita problemas com `localStorage` quando abrindo direto com `file://`.
+**Limites:** o QR requer um link completo. O Code 128 aceita até 60 caracteres ASCII imprimíveis; links longos devem usar QR Code. Um SVG continua nítido ao ser reduzido, mas a leitura por câmera ou leitor depende do tamanho físico e da qualidade da impressão.
 
-### Opção 2: abrir direto no navegador
-Você pode abrir o `index.html`, mas alguns navegadores podem ter comportamento inconsistente com `localStorage` dependendo do caminho.
+## Capturas de tela
 
----
+As capturas abaixo são da versão inicial do projeto; a interface atual inclui os modelos e a pré-visualização descritos acima.
 
-## 🖨️ Como usar
+| Tela inicial                                               | Modelo 4x                          | Modelo 6x                          |
+| ---------------------------------------------------------- | ---------------------------------- | ---------------------------------- |
+| ![Tela inicial da versão inicial](assets/tela-inicial.png) | ![Modelo 4x](assets/modelo-4x.png) | ![Modelo 6x](assets/modelo-6x.png) |
 
-1. Selecione o **modelo** no seletor
-2. Para modelos de **imagem**, escolha um arquivo no input
-3. Para modelos de **aviso**, digite o texto no campo
-4. Clique em **Imprimir**
-5. O template abre em nova aba e dispara a impressão
+## Tecnologias e licenças
 
----
-
-## 🧠 Como funciona por baixo
-
-- A imagem selecionada é convertida para **base64** e salva em:
-  - `localStorage["imagemSelecionada"]`
-- O texto do aviso é salvo em:
-  - `localStorage["textoAviso"]`
-- Cada página de modelo (`/pages`) lê o `localStorage`, monta o layout (grid) e chama `window.print()`.
-
----
-
-## 🔧 Tecnologias
-- HTML5
-- CSS3 (grid e @page para impressão)
-- JavaScript (DOM, FileReader, localStorage)
-
----
-
-## 🚀 Próximas melhorias (ideias)
-- Margem configurável
-- Opção de “preencher” (`object-fit: cover`) vs “conter” (`contain`)
-- Ajuste de espaçamento (padding) no layout
-- Botão “limpar seleção” / “limpar aviso”
-- Suporte a múltiplas imagens (em vez de repetir a mesma)
-
----
-
-## 📜 Licença
-Sinta-se livre para usar e modificar. (Se quiser, coloque MIT)
+- HTML5, CSS3 e JavaScript no navegador.
+- Bibliotecas de terceiros com licença MIT e seus avisos em [`licenses/THIRD_PARTY.md`](licenses/THIRD_PARTY.md).
+- O projeto Central de Impressão ainda não possui um arquivo de licença próprio. As licenças em `licenses/` aplicam-se às bibliotecas indicadas.

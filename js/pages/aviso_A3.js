@@ -1,39 +1,32 @@
-const textoElemento = document.getElementById("texto");
-const container = document.getElementById("container");
+(function () {
+    const textoElemento = document.getElementById("texto");
+    const container = document.getElementById("container");
+    const btnPrint = document.getElementById("btnPrint");
+    const textoRecebido = localStorage.getItem("textoAviso") || "SEU TEXTO AQUI";
 
-// pega texto vindo do index
-let textoRecebido = localStorage.getItem("textoAviso") || "SEU TEXTO AQUI";
+    // Preserva as quebras de linha; o CSS usa white-space: pre-line.
+    textoElemento.textContent = textoRecebido;
 
-// permite quebra de linha com Enter
-textoElemento.innerHTML = textoRecebido.replace(/\n/g, "<br>");
-
-function ajustarTamanho() {
-
-    let tamanhoMaximo = 400;   // começa grande
-    let tamanhoMinimo = 10;
-    let tamanhoAtual = tamanhoMaximo;
-
-    textoElemento.style.fontSize = tamanhoAtual + "px";
-
-    // Se estiver ultrapassando, começa a reduzir
-    while (
-        (textoElemento.scrollHeight > container.clientHeight ||
-            textoElemento.scrollWidth > container.clientWidth)
-        && tamanhoAtual > tamanhoMinimo
-    ) {
-        tamanhoAtual -= 2; // reduz mais rápido
+    function ajustarTamanho() {
+        let tamanhoAtual = 400;
         textoElemento.style.fontSize = tamanhoAtual + "px";
+
+        while (
+            (textoElemento.scrollHeight > container.clientHeight ||
+             textoElemento.scrollWidth > container.clientWidth) &&
+            tamanhoAtual > 10
+        ) {
+            tamanhoAtual -= 2;
+            textoElemento.style.fontSize = tamanhoAtual + "px";
+        }
     }
-}
 
-window.onload = function () {
-    ajustarTamanho();
-
-    setTimeout(() => {
-        window.print();
-    }, 300);
-
-    window.onafterprint = function () {
-        window.close();
-    };
-};
+    btnPrint.addEventListener("click", () => window.print());
+    window.addEventListener("beforeprint", ajustarTamanho);
+    window.addEventListener("afterprint", ajustarTamanho);
+    window.addEventListener("resize", ajustarTamanho);
+    window.addEventListener("load", () => {
+        ajustarTamanho();
+        setTimeout(() => window.print(), 300);
+    });
+})();

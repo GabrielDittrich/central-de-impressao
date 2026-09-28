@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/printer-door-open.png">
+    <link rel="stylesheet" href="../style/pages/codigos.css">
+    <script src="../js/vendor/qrcode-generator.js" defer></script>
+    <script src="../js/vendor/qrcode-utf8.js" defer></script>
+    <script src="../js/vendor/JsBarcode.all.min.js" defer></script>
+    <script src="../js/pages/codigos.js" defer></script>
+    <title>Código de barras</title>
+</head>
+<body data-code-type="barras">
+    <main class="print-screen">
+        <header class="print-toolbar">
+            <div>
+                <span class="print-toolbar__label">Central de Impressão</span>
+                <h1>Código de barras</h1>
+                <p>A impressão abre automaticamente quando o código estiver pronto.</p>
+                <p class="code-value" id="valueLabel"></p>
+                <p class="error-message" id="errorMessage" role="alert" hidden></p>
+            </div>
+            <div class="print-toolbar__actions">
+                <span class="format-badge">A4 • Paisagem • Code 128</span>
+                <button type="button" id="btnDownload" class="download-button" disabled>Baixar SVG</button>
+                <button type="button" id="btnPrint" class="print-button" disabled>Imprimir</button>
+            </div>
+        </header>
+        <section class="preview-area" aria-label="Pré-visualização da folha A4">
+            <div class="page-a4">
+                <div class="code-output" id="codeOutput"></div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

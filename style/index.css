@@ -80,6 +80,29 @@ input[type="file"]:hover {
     border-color: #2a5298;
 }
 
+#codigoContainer[hidden] { display: none; }
+
+#codigoContainer input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font: inherit;
+}
+
+#codigoContainer input:focus {
+    border-color: #2a5298;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.2);
+}
+
+.input-help {
+    margin: 8px 0 0;
+    color: #5d6472;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
 textarea {
     width: 100%;
     padding: 15px;

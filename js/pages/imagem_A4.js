@@ -1,17 +1,22 @@
-const img = document.getElementById("imagem");
-const imagem = localStorage.getItem("imagemSelecionada");
+(function () {
+    const img = document.getElementById("imagem");
+    const btnPrint = document.getElementById("btnPrint");
+    const imagem = localStorage.getItem("imagemSelecionada");
 
-if (imagem) {
-    img.src = imagem;
-}
+    if (!imagem) {
+        btnPrint.disabled = true;
+        alert("Nenhuma imagem encontrada. Volte para a tela inicial e selecione uma imagem.");
+        return;
+    }
 
-window.onload = function () {
-
-    setTimeout(() => {
-        window.print();
-    }, 300);
-
-    window.onafterprint = function () {
-        window.close();
+    btnPrint.addEventListener("click", () => window.print());
+    img.onerror = () => {
+        btnPrint.disabled = true;
+        alert("Falha ao carregar a imagem. Tente selecionar novamente.");
     };
-};
+    img.src = imagem;
+
+    window.addEventListener("load", () => {
+        if (img.naturalWidth > 0) setTimeout(() => window.print(), 300);
+    });
+})();

@@ -1,19 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/printer-door-open.png">
-    <script src="../js/pages/imagem_A4.js" defer></script>
     <link rel="stylesheet" href="../style/pages/imagem_A4.css">
-    <title>Imagem A4</title>
-
+    <script src="../js/pages/imagem_A4.js" defer></script>
+    <title>Imagem única em A4</title>
 </head>
-
 <body>
-
-    <img id="imagem">
-
+    <main class="print-screen">
+        <header class="print-toolbar">
+            <div>
+                <span class="print-toolbar__label">Central de Impressão</span>
+                <h1>Imagem única em A4</h1>
+                <p>A janela de impressão será aberta automaticamente.</p>
+            </div>
+            <div class="print-toolbar__actions">
+                <span class="format-badge">A4 • Paisagem • Imagem única</span>
+                <button type="button" id="btnPrint" class="print-button">Imprimir</button>
+            </div>
+        </header>
+        <section class="preview-area" aria-label="Pré-visualização da folha A4">
+            <div class="page-paper">
+                <img id="imagem" alt="Imagem para impressão">
+            </div>
+        </section>
+    </main>
 </body>
-
 </html>
