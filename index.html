@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/printer-door-open.png">
+    <script src="js/image-storage.js" defer></script>
     <script src="js/index.js" defer></script>
     <link rel="stylesheet" href="style/index.css">
     <title>Central de Impressão</title>
@@ -37,6 +38,8 @@
             <img id="previewImagem" style="width:100%; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.15);">
         </div>
 
+        <p id="imagemStatus" role="status" hidden></p>
+
         <textarea id="textoInput" placeholder="Digite o texto do aviso aqui..."
             style="width:100%; height:100px; margin-top:10px; display:none;"></textarea>
 
@@ -48,7 +51,7 @@
 
         <br><br>
 
-        <button onclick="imprimir()">Imprimir</button>
+        <button id="btnImprimir" onclick="imprimir()">Imprimir</button>
     </div>
 
     <div id="areaImpressao" class="preview"></div>
