@@ -66,13 +66,16 @@ body {
 @page { size: A3 landscape; margin: 0; }
 
 @media print {
-    html, body { width: 420mm; height: 297mm; margin: 0; padding: 0; }
+    html, body { width: auto; height: auto; margin: 0; padding: 0; }
     .print-toolbar { display: none !important; }
-    .print-screen, .preview-area { margin: 0; padding: 0; }
+    .print-screen, .preview-area { display: block; margin: 0; padding: 0; }
     .page-paper {
-        width: 420mm;
-        height: 297mm;
+        width: 419mm;
+        height: 295mm;
         margin: 0;
+        overflow: hidden;
+        break-inside: avoid;
         box-shadow: none;
     }
+    #imagem { width: 419mm; height: 295mm; }
 }
