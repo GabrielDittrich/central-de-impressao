@@ -21,7 +21,7 @@ Aplicação em HTML, CSS e JavaScript para preparar, pré-visualizar, imprimir e
 
 O diálogo nativo do Ctrl+P pode bloquear a interação com outras abas. Para preparar vários modelos antes de imprimir, abra cada um e deixe no **Pré-visualizar**.
 
-> Recomenda-se o Live Server porque o comportamento de `localStorage` em páginas abertas diretamente por `file://` varia entre navegadores.
+> Recomenda-se o Live Server porque o armazenamento do navegador em páginas abertas diretamente por `file://` varia entre navegadores.
 
 ## Estrutura do projeto
 
@@ -42,6 +42,7 @@ central-de-impressao/
 │   └── codigo_barras.html
 ├── js/
 │   ├── index.js            # seleção, validação e abertura dos modelos
+│   ├── image-storage.js    # armazenamento da imagem original no IndexedDB
 │   ├── pages/              # geração do conteúdo e impressão
 │   └── vendor/             # bibliotecas locais de QR e Code 128
 │       ├── qrcode-generator.js
@@ -58,15 +59,14 @@ central-de-impressao/
 
 ## Como funciona
 
-O `js/index.js` usa `FileReader` para converter a imagem selecionada em uma URL de dados e guarda o conteúdo no `localStorage`:
+O `js/index.js` mostra a prévia com uma URL temporária e usa `js/image-storage.js` para salvar o arquivo original no IndexedDB. Assim, os modelos de imagem leem a foto sem conversão para Base64. O botão **Imprimir** só abre o modelo depois que o salvamento termina. O `localStorage` continua guardando apenas textos curtos:
 
 | Chave               | Conteúdo                                         |
 | ------------------- | ------------------------------------------------ |
-| `imagemSelecionada` | Imagem para os modelos 4x, 6x, 8x e imagem única |
 | `textoAviso`        | Texto dos avisos A4/A3                           |
 | `codigoConteudo`    | Link do QR Code ou texto do Code 128             |
 
-Cada página em `pages/` lê a chave correspondente e monta a folha. As regras `@media screen` apresentam a prévia; `@media print` deixa apenas o conteúdo da folha e define o papel com `@page`. Nos modelos com várias imagens, as linhas tracejadas aparecem apenas na tela.
+Cada página em `pages/` lê o conteúdo correspondente e monta a folha. A imagem fica na coleção `imagens` do IndexedDB; o navegador ainda pode recusar o salvamento se faltar espaço. As regras `@media screen` apresentam a prévia; `@media print` deixa apenas o conteúdo da folha e define o papel com `@page`. Nos modelos com várias imagens, as linhas tracejadas aparecem apenas na tela.
 
 O QR Code usa `qrcode-generator` com margem branca de quatro módulos. O código de barras usa `JsBarcode` no formato Code 128. As duas bibliotecas estão em `js/vendor/`, então não há dependência de CDN durante o uso. O botão **Baixar SVG** exporta um desenho vetorial, que não fica pixelado ao ampliar.
 
