@@ -80,8 +80,25 @@ body {
 @page { size: A4 landscape; margin: 0; }
 
 @media print {
-    html, body { width: 297mm; height: 210mm; margin: 0; padding: 0; }
+    html, body { width: auto; height: auto; margin: 0; padding: 0; }
     .print-toolbar { display: none !important; }
-    .print-screen, .preview-area { margin: 0; padding: 0; }
-    .page-a4 { width: 297mm; height: 210mm; margin: 0; box-shadow: none; }
+    .print-screen, .preview-area { display: block; margin: 0; padding: 0; }
+    /* Uma pequena folga evita que o navegador crie uma segunda página por arredondamento. */
+    .page-a4 {
+        width: 296mm;
+        height: 208mm;
+        margin: 0;
+        overflow: hidden;
+        break-inside: avoid;
+        box-shadow: none;
+    }
+    .grid8 {
+        width: 296mm;
+        height: 208mm;
+        grid-template-rows: repeat(2, 104mm);
+    }
+    .grid8 img {
+        display: block;
+        height: 104mm;
+    }
 }
